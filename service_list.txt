@@ -1,0 +1,5 @@
+GameCategories
+GameLicense
+GamePromo
+Company
+GameProduct

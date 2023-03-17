@@ -1,0 +1,551 @@
+basePath: /api/v1
+definitions:
+  models.Company:
+    properties:
+      city:
+        type: string
+      companyID:
+        type: string
+      country:
+        type: string
+      createdAt:
+        type: string
+      isActive:
+        type: boolean
+      name:
+        type: string
+      state:
+        type: string
+      updatedAt:
+        type: string
+    type: object
+  models.CompanyDetails:
+    properties:
+      city:
+        type: string
+      company_id:
+        type: string
+      country:
+        type: string
+      created_at:
+        type: string
+      is_active:
+        type: boolean
+      name:
+        type: string
+      state:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.CompanyInput:
+    properties:
+      city:
+        type: string
+      country:
+        type: string
+      name:
+        type: string
+      state:
+        type: string
+    required:
+    - city
+    - country
+    - name
+    - state
+    type: object
+  models.GameCategories:
+    properties:
+      categoryID:
+        type: string
+      description:
+        type: string
+      games:
+        items:
+          $ref: '#/definitions/models.GameProduct'
+        type: array
+      name:
+        type: string
+    type: object
+  models.GameCategoriesInput:
+    properties:
+      description:
+        type: string
+      games:
+        items:
+          type: string
+        type: array
+      name:
+        type: string
+    required:
+    - description
+    - name
+    type: object
+  models.GameLicense:
+    properties:
+      description:
+        type: string
+      licenseID:
+        type: string
+      name:
+        type: string
+    type: object
+  models.GameLicenseDetails:
+    properties:
+      description:
+        type: string
+      license_id:
+        type: string
+      name:
+        type: string
+    type: object
+  models.GameLicenseInput:
+    properties:
+      description:
+        type: string
+      name:
+        type: string
+    required:
+    - description
+    - name
+    type: object
+  models.GameProduct:
+    properties:
+      categories:
+        items:
+          $ref: '#/definitions/models.GameCategories'
+        type: array
+      companyID:
+        $ref: '#/definitions/models.Company'
+      description:
+        type: string
+      licenseID:
+        $ref: '#/definitions/models.GameLicense'
+      name:
+        type: string
+      price:
+        type: number
+      productID:
+        type: string
+      promoID:
+        $ref: '#/definitions/models.GamePromo'
+    type: object
+  models.GameProductDetails:
+    properties:
+      categories:
+        items:
+          type: string
+        type: array
+      companyName:
+        type: string
+      description:
+        type: string
+      licenseName:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+      productID:
+        type: string
+      promoName:
+        type: string
+    type: object
+  models.GameProductInput:
+    properties:
+      categories:
+        items:
+          type: string
+        type: array
+      companyID:
+        type: string
+      description:
+        type: string
+      licenseID:
+        type: string
+      name:
+        type: string
+      price:
+        type: number
+      promoID:
+        type: string
+    required:
+    - description
+    - name
+    - price
+    type: object
+  models.GameProductSetCategories:
+    properties:
+      categories:
+        items:
+          type: string
+        type: array
+      productID:
+        type: string
+    required:
+    - categories
+    - productID
+    type: object
+  models.GameProductSetCompany:
+    properties:
+      companyID:
+        type: string
+      productID:
+        type: string
+    required:
+    - companyID
+    - productID
+    type: object
+  models.GameProductSetLicense:
+    properties:
+      licenseID:
+        type: string
+      productID:
+        type: string
+    required:
+    - licenseID
+    - productID
+    type: object
+  models.GameProductSetPromo:
+    properties:
+      productID:
+        type: string
+      promoID:
+        type: string
+    required:
+    - productID
+    - promoID
+    type: object
+  models.GamePromo:
+    properties:
+      companyID:
+        $ref: '#/definitions/models.Company'
+      description:
+        type: string
+      discount:
+        type: number
+      endDate:
+        type: string
+      isActive:
+        type: boolean
+      name:
+        type: string
+      promoID:
+        type: string
+      startDate:
+        type: string
+    type: object
+  models.GamePromoDetails:
+    properties:
+      company_name:
+        type: string
+      description:
+        type: string
+      discount:
+        type: number
+      end_date:
+        type: string
+      is_active:
+        type: boolean
+      name:
+        type: string
+      promo_id:
+        type: string
+      start_date:
+        type: string
+    type: object
+  models.GamePromoInput:
+    properties:
+      companyID:
+        type: string
+      description:
+        type: string
+      discount:
+        type: number
+      endDate:
+        type: string
+      isActive:
+        type: boolean
+      name:
+        type: string
+      startDate:
+        type: string
+    required:
+    - companyID
+    - description
+    - discount
+    - endDate
+    - isActive
+    - name
+    - startDate
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: GameShop API Support
+    url: http://swagger.io/support
+  description: API for GameShop application
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: GameShop API
+  version: "1.0"
+paths:
+  /companies/:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CompanyDetails'
+      summary: find all companies
+      tags:
+      - companies
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Company
+        in: body
+        name: company
+        required: true
+        schema:
+          $ref: '#/definitions/models.CompanyInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CompanyDetails'
+      summary: create a new company
+      tags:
+      - companies
+  /game-categories/:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GameCategories'
+      summary: find all game categories
+      tags:
+      - game-categories
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Game Category
+        in: body
+        name: gameCategory
+        required: true
+        schema:
+          $ref: '#/definitions/models.GameCategoriesInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GameCategories'
+      summary: create game category
+      tags:
+      - game-categories
+  /game-license/:
+    get:
+      consumes:
+      - application/json
+      description: Returns all game licenses
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GameLicenseDetails'
+      summary: Returns all game licenses
+      tags:
+      - game-license
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Game license input
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/models.GameLicenseInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GameLicenseDetails'
+      summary: Creates a new game license
+      tags:
+      - game-license
+  /game-products/:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GameProductDetails'
+      summary: find all game products
+      tags:
+      - game-products
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: game product
+        in: body
+        name: gameProduct
+        required: true
+        schema:
+          $ref: '#/definitions/models.GameProductInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GameProductDetails'
+      summary: create game product
+      tags:
+      - game-products
+  /game-products/set-categories:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: game product
+        in: body
+        name: gameProduct
+        required: true
+        schema:
+          $ref: '#/definitions/models.GameProductSetCategories'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GameProduct'
+      summary: set categories for game product
+      tags:
+      - game-products
+  /game-products/set-company:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: game product
+        in: body
+        name: gameProduct
+        required: true
+        schema:
+          $ref: '#/definitions/models.GameProductSetCompany'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GameProduct'
+      summary: set company for game product
+      tags:
+      - game-products
+  /game-products/set-license:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: game product
+        in: body
+        name: gameProduct
+        required: true
+        schema:
+          $ref: '#/definitions/models.GameProductSetLicense'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GameProduct'
+      summary: set license for game product
+      tags:
+      - game-products
+  /game-products/set-promo:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: game product
+        in: body
+        name: gameProduct
+        required: true
+        schema:
+          $ref: '#/definitions/models.GameProductSetPromo'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GameProduct'
+      summary: set promo for game product
+      tags:
+      - game-products
+  /game-promo/:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GamePromoDetails'
+      summary: Find all game promo
+      tags:
+      - game-promo
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: game promo
+        in: body
+        name: gamePromo
+        required: true
+        schema:
+          $ref: '#/definitions/models.GamePromoInput'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GamePromoDetails'
+      summary: Create game promo
+      tags:
+      - game-promo
+swagger: "2.0"

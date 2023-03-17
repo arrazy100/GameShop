@@ -1,0 +1,841 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "API for GameShop application",
+        "title": "GameShop API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "name": "GameShop API Support",
+            "url": "http://swagger.io/support",
+            "email": "support@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/api/v1",
+    "paths": {
+        "/companies/": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "companies"
+                ],
+                "summary": "find all companies",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CompanyDetails"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "companies"
+                ],
+                "summary": "create a new company",
+                "parameters": [
+                    {
+                        "description": "Company",
+                        "name": "company",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CompanyInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CompanyDetails"
+                        }
+                    }
+                }
+            }
+        },
+        "/game-categories/": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game-categories"
+                ],
+                "summary": "find all game categories",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GameCategories"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game-categories"
+                ],
+                "summary": "create game category",
+                "parameters": [
+                    {
+                        "description": "Game Category",
+                        "name": "gameCategory",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.GameCategoriesInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GameCategories"
+                        }
+                    }
+                }
+            }
+        },
+        "/game-license/": {
+            "get": {
+                "description": "Returns all game licenses",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game-license"
+                ],
+                "summary": "Returns all game licenses",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GameLicenseDetails"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game-license"
+                ],
+                "summary": "Creates a new game license",
+                "parameters": [
+                    {
+                        "description": "Game license input",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.GameLicenseInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GameLicenseDetails"
+                        }
+                    }
+                }
+            }
+        },
+        "/game-products/": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game-products"
+                ],
+                "summary": "find all game products",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GameProductDetails"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game-products"
+                ],
+                "summary": "create game product",
+                "parameters": [
+                    {
+                        "description": "game product",
+                        "name": "gameProduct",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.GameProductInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GameProductDetails"
+                        }
+                    }
+                }
+            }
+        },
+        "/game-products/set-categories": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game-products"
+                ],
+                "summary": "set categories for game product",
+                "parameters": [
+                    {
+                        "description": "game product",
+                        "name": "gameProduct",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.GameProductSetCategories"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GameProduct"
+                        }
+                    }
+                }
+            }
+        },
+        "/game-products/set-company": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game-products"
+                ],
+                "summary": "set company for game product",
+                "parameters": [
+                    {
+                        "description": "game product",
+                        "name": "gameProduct",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.GameProductSetCompany"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GameProduct"
+                        }
+                    }
+                }
+            }
+        },
+        "/game-products/set-license": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game-products"
+                ],
+                "summary": "set license for game product",
+                "parameters": [
+                    {
+                        "description": "game product",
+                        "name": "gameProduct",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.GameProductSetLicense"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GameProduct"
+                        }
+                    }
+                }
+            }
+        },
+        "/game-products/set-promo": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game-products"
+                ],
+                "summary": "set promo for game product",
+                "parameters": [
+                    {
+                        "description": "game product",
+                        "name": "gameProduct",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.GameProductSetPromo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GameProduct"
+                        }
+                    }
+                }
+            }
+        },
+        "/game-promo/": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game-promo"
+                ],
+                "summary": "Find all game promo",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GamePromoDetails"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "game-promo"
+                ],
+                "summary": "Create game promo",
+                "parameters": [
+                    {
+                        "description": "game promo",
+                        "name": "gamePromo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.GamePromoInput"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.GamePromoDetails"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.Company": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "companyID": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.CompanyDetails": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "company_id": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "is_active": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.CompanyInput": {
+            "type": "object",
+            "required": [
+                "city",
+                "country",
+                "name",
+                "state"
+            ],
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GameCategories": {
+            "type": "object",
+            "properties": {
+                "categoryID": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "games": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.GameProduct"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GameCategoriesInput": {
+            "type": "object",
+            "required": [
+                "description",
+                "name"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "games": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GameLicense": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "licenseID": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GameLicenseDetails": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "license_id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GameLicenseInput": {
+            "type": "object",
+            "required": [
+                "description",
+                "name"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GameProduct": {
+            "type": "object",
+            "properties": {
+                "categories": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.GameCategories"
+                    }
+                },
+                "companyID": {
+                    "$ref": "#/definitions/models.Company"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "licenseID": {
+                    "$ref": "#/definitions/models.GameLicense"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "productID": {
+                    "type": "string"
+                },
+                "promoID": {
+                    "$ref": "#/definitions/models.GamePromo"
+                }
+            }
+        },
+        "models.GameProductDetails": {
+            "type": "object",
+            "properties": {
+                "categories": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "companyName": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "licenseName": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "productID": {
+                    "type": "string"
+                },
+                "promoName": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GameProductInput": {
+            "type": "object",
+            "required": [
+                "description",
+                "name",
+                "price"
+            ],
+            "properties": {
+                "categories": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "companyID": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "licenseID": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "promoID": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GameProductSetCategories": {
+            "type": "object",
+            "required": [
+                "categories",
+                "productID"
+            ],
+            "properties": {
+                "categories": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "productID": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GameProductSetCompany": {
+            "type": "object",
+            "required": [
+                "companyID",
+                "productID"
+            ],
+            "properties": {
+                "companyID": {
+                    "type": "string"
+                },
+                "productID": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GameProductSetLicense": {
+            "type": "object",
+            "required": [
+                "licenseID",
+                "productID"
+            ],
+            "properties": {
+                "licenseID": {
+                    "type": "string"
+                },
+                "productID": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GameProductSetPromo": {
+            "type": "object",
+            "required": [
+                "productID",
+                "promoID"
+            ],
+            "properties": {
+                "productID": {
+                    "type": "string"
+                },
+                "promoID": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GamePromo": {
+            "type": "object",
+            "properties": {
+                "companyID": {
+                    "$ref": "#/definitions/models.Company"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "discount": {
+                    "type": "number"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "promoID": {
+                    "type": "string"
+                },
+                "startDate": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GamePromoDetails": {
+            "type": "object",
+            "properties": {
+                "company_name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "discount": {
+                    "type": "number"
+                },
+                "end_date": {
+                    "type": "string"
+                },
+                "is_active": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "promo_id": {
+                    "type": "string"
+                },
+                "start_date": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.GamePromoInput": {
+            "type": "object",
+            "required": [
+                "companyID",
+                "description",
+                "discount",
+                "endDate",
+                "isActive",
+                "name",
+                "startDate"
+            ],
+            "properties": {
+                "companyID": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "discount": {
+                    "type": "number"
+                },
+                "endDate": {
+                    "type": "string"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "startDate": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
